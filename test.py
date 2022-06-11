@@ -2,7 +2,7 @@ import unittest
 import gedcom_parser
 import datetime
 
-table = gedcom_parser.gedcom_table("gedcom_test.ged")
+table = gedcom_parser.gedcom_table("gedcom_test.ged") 
 
 class TestGedcomFile(unittest.TestCase):
     def test_birth_marr(self):
