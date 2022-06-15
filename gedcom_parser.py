@@ -1,10 +1,11 @@
 class Individual:
-    def __init__(self, id, name, gender, birth, alive):
+    def __init__(self, id, name, gender, birth, alive, death):
         self.id = id
         self.name = name
         self.gender = gender
         self.birth = birth
         self.alive = alive
+        self.death = death
 
 class Family:
     def __init__(self, id, married, husband, wife, children):
@@ -102,7 +103,7 @@ def gedcom_table(file_name):
     p_table.add_column("Alive", alive_list)
     # p_table.add_column("Child", child_list)
     # p_table.add_column("Spouse", spouse_list)
-    # p_table.add_column("Death", death_list)
+    p_table.add_column("Death", death_list)
     f_table.add_column("ID", fam_list)
     f_table.add_column("Married", marr_list)
     f_table.add_column("Husband ID", husb_list)
@@ -114,7 +115,7 @@ def gedcom_table(file_name):
     ans = []
     fam_ans = []
     for i in range(len(id_list)):
-        ans.append(Individual(id_list[i], name_list[i], gender_list[i], birth_list[i], alive_list[i]))
+        ans.append(Individual(id_list[i], name_list[i], gender_list[i], birth_list[i], alive_list[i], death_list[i]))
     
     for i in range(len(fam_list)):
         fam_ans.append(Family(fam_list[i], marr_list[i], husb_list[i], wife_list[i], chil_list[i]))

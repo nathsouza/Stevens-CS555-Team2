@@ -1,10 +1,8 @@
 import unittest
 import gedcom_parser
 from dateutil.parser import *
-from datetime import *
-
-
-
+import datetime
+from datetime import date
 
 table = gedcom_parser.gedcom_table("gedcom_test.ged")
 month_dict = {"JAN": 1,
@@ -26,14 +24,26 @@ class TestGedcomFile(unittest.TestCase):
         for family in table[1]:
             for indiv in table[0]:
                 if (indiv.id == family.husband or indiv.id == family.wife):
-                    print(family.married)
+                    # print(family.married)
                     temp_married = family.married.split(" ")
                     temp_birth = indiv.birth.split(" ")
-                    self.assertTrue(datetime.datetime(int(temp_married[2]), month_dict[temp_married[1]], int(temp_married[0])) > datetime.datetime(int(temp_birth[2]), month_dict[temp_birth[1]], int(temp_birth[0])))
-    
+                    checkDate = (datetime.datetime(int(temp_married[2]), month_dict[temp_married[1]], int(temp_married[0])) > datetime.datetime(int(temp_birth[2]), month_dict[temp_birth[1]], int(temp_birth[0])))
+                    if(not checkDate):
+                        print('Dates (birth, marriage, divorce, death) should not be after the current date')
+                        return
+        print('Test 1 passed succesfully')
     #US 02 - Birth should occur before marriage of an individual
-
-
+    def test_us_02(self):
+        for family in table[1]:
+            for indiv in table[0]:
+                if(indiv.id == family.husband or indiv.id == family.wife):
+                    temp_birth = indiv.birth.split(" ")
+                    temp_married = family.married.split(" ")
+                    checkMarriage = datetime.datetime(int(temp_birth[2]), month_dict[temp_birth[1]], int(temp_birth[0])) < datetime.datetime(int(temp_married[2]), month_dict[temp_married[1]], int(temp_married[0]))
+                    if(not checkMarriage):
+                        print('Birth should occur before marriage of an individual')
+                        return
+        print('Test 2 passed succesfully')
     #User story 3 - Birth should occur before death of an individual
     # def test_us_03(self):
     #     for family in table[1]:
@@ -62,10 +72,19 @@ class TestGedcomFile(unittest.TestCase):
     def test_us_07(self):
         for indiv in table[0]:
             temp_birth = indiv.birth.split(" ")
-            check = datetime.datetime(int(temp_birth[2])+150, month_dict[temp_birth[1]], int(temp_birth[0])) > datetime.datetime.now()
-            if (not check):
-                print(indiv.name + "is Less Than 150 years old")
-                break
+            temp_alive = indiv.alive
+            if(temp_alive == 'False'):
+                temp_death = indiv.death.split(" ")
+                checkDeathDate = int(temp_death[2]) - int(temp_birth[2])
+                if checkDeathDate > 150:
+                    print("Death should be less than 150 years after birth for dead people")
+                    return
+            else:
+                checkBirthDate = date.today().year - int(temp_birth[2])
+                if(checkBirthDate > 150):
+                    print("Current date should be less than 150 years after birth for all living people")
+                    return
+        print('Test 7 passed succesfully')
     
     #User story 8 - Children should be born after marriage of parents (and not more than 9 months after their divorce)
 
@@ -81,8 +100,10 @@ class TestGedcomFile(unittest.TestCase):
                     check_14 = datetime.datetime(int(temp_married[2]), month_dict[temp_married[1]], int(temp_married[0])) > datetime.datetime(int(temp_birth[2])+14, month_dict[temp_birth[1]], int(temp_birth[0]))
                     if (not check_14):
                         print(indiv.name + "Marriage date is before 14")
-                        break
+                        return
+        print('Test 10 passed succesfully')
 
-
+if __name__ == '__main__':
+    unittest.main()
 
  
