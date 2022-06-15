@@ -101,8 +101,8 @@ def gedcom_table(file_name):
     p_table.add_column("Gender", gender_list)
     p_table.add_column("Birthday", birth_list)
     p_table.add_column("Alive", alive_list)
-    # p_table.add_column("Child", child_list)
-    # p_table.add_column("Spouse", spouse_list)
+    p_table.add_column("Child", child_list)
+    p_table.add_column("Spouse", spouse_list)
     p_table.add_column("Death", death_list)
     f_table.add_column("ID", fam_list)
     f_table.add_column("Married", marr_list)
@@ -124,5 +124,5 @@ def gedcom_table(file_name):
     #     print(fam_ans[i].married)
 
     return [ans, fam_ans]
-         
+    
 gedcom_table("gedcom_test.ged")

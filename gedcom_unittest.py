@@ -3,6 +3,7 @@ import gedcom_parser
 # from dateutil.parser import *
 import datetime
 from datetime import date
+from gedcom_parser import p_table, f_table
 
 
 table = gedcom_parser.gedcom_table("gedcom_test.ged")
@@ -18,6 +19,10 @@ month_dict = {"JAN": 1,
             "OCT": 10,
             "NOV": 11,
             "DEC": 12}
+
+
+print(p_table)
+print(f_table)
 
 class TestGedcomFile(unittest.TestCase):
 
