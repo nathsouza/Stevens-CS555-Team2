@@ -68,7 +68,18 @@ class TestGedcomFile(unittest.TestCase):
 
 
     #User story 4 - Marriage should occur before divorce of spouses, and divorce can only occur after marriage
-
+    def test_us_4(self):
+        for family in table[1]:
+            for indiv in table[0]:
+                if (indiv.id == family.husband or indiv.id == family.wife):
+                    temp_divorce = family.divorced.split(" ")
+                    temp_married = family.married.split(" ")
+                    marriage = datetime.datetime(int(temp_married[2]), month_dict[temp_married[1]], int(temp_married[0]))   
+                    divorce = datetime.datetime(int(temp_divorce[2]), month_dict[temp_divorce[1]], int(temp_divorce[0]))
+                    if marriage > divorce:
+                        print("ERROR: INDIVIDUAL: US06: {}: {}: divorce {} before marriage {}".format(indiv['num']+4, indiv['INDI'],divorce, marriage))
+                        return
+        print('Test 4 passed succesfully')
 
     #User story 5 - Marriage should occur before death of either spouse
     def test_us_5(self):
@@ -85,6 +96,19 @@ class TestGedcomFile(unittest.TestCase):
         print('Test 5 passed succesfully')
 
     #User story 6 - Divorce can only occur before death of both spouses
+    def test_us_5(self):
+        for family in table[1]:
+            for indiv in table[0]:
+                if (indiv.id == family.husband or indiv.id == family.wife):
+                    temp_death = indiv.death.split(" ")
+                    temp_divorce = family.divorced.split(" ")
+                    death = datetime.datetime(int(temp_death[2]), month_dict[temp_death[1]], int(temp_death[0]))
+                    divorce = datetime.datetime(int(temp_divorce[2]), month_dict[temp_divorce[1]], int(temp_divorce[0]))
+                    if divorce > death:
+                        print("ERROR: INDIVIDUAL: US06: {}: {}: death {} before divorce {}".format(indiv['num']+4, indiv['INDI'],death, divorce))
+                        return
+        print('Test 6 passed succesfully')
+
 
     #User story 07 -Death should be less than 150 years after birth for dead people, and current date should be less than 150 years after birth for all living people
     def test_us_07(self):
@@ -121,7 +145,27 @@ class TestGedcomFile(unittest.TestCase):
                         return
         print('Test 10 passed succesfully')
 
+
+    #User story 13 - Birth dates of siblings should be more than 8 months apart or less than 2 days apart (twins may be born one day apart, e.g. 11:59 PM and 12:02 AM the following calendar day)
+
+    #User story 14 - No more than five siblings should be born at the same time
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 if __name__ == '__main__':
     unittest.main()
 
- 

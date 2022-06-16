@@ -8,12 +8,13 @@ class Individual:
         self.death = death
 
 class Family:
-    def __init__(self, id, married, husband, wife, children):
+    def __init__(self, id, married, husband, wife, children, divorced):
         self.id = id
         self.married = married
         self.husband = husband
         self.wife = wife
         self.children = children
+        self.divorced = divorced
 
 
 from prettytable import PrettyTable
@@ -38,7 +39,9 @@ def gedcom_table(file_name):
     wife_list = []
     chil_list = []
     marr_list = []
+    div_list = []
     birt_or_deat = "BIRT"
+    marr_or_div = "DIV"
     starter = False
     checker = True
     while (True):
@@ -76,15 +79,17 @@ def gedcom_table(file_name):
                             else:
                                 arg="True"
                             alive_list.append(arg)
-
                         elif (tag=="MARR"):
                             birt_or_deat = "MARR"
+                        elif (tag=="DIV"):
+                            marr_or_div = "DIV"
                         elif (tag=="DATE"):
                             if (birt_or_deat=="BIRT"):
                                 birth_list.append(arg)
                             elif (birt_or_deat=="DEAT"):
                                 death_list.append(arg)
                             else:
+                                div_list.append(arg)
                                 marr_list.append(arg)
                         elif (tag=="HUSB"):
                             checker = False
@@ -106,6 +111,7 @@ def gedcom_table(file_name):
     p_table.add_column("Death", death_list)
     f_table.add_column("ID", fam_list)
     f_table.add_column("Married", marr_list)
+    f_table.add_column("Divorced",div_list)
     f_table.add_column("Husband ID", husb_list)
     f_table.add_column("Wife ID", wife_list)
     f_table.add_column("Children", chil_list)
@@ -118,7 +124,7 @@ def gedcom_table(file_name):
         ans.append(Individual(id_list[i], name_list[i], gender_list[i], birth_list[i], alive_list[i], death_list[i]))
     
     for i in range(len(fam_list)):
-        fam_ans.append(Family(fam_list[i], marr_list[i], husb_list[i], wife_list[i], chil_list[i]))
+        fam_ans.append(Family(fam_list[i], marr_list[i], husb_list[i], wife_list[i], chil_list[i], div_list[i]))
     
     # for i in range(len(fam_list)):
     #     print(fam_ans[i].married)
