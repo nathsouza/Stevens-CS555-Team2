@@ -27,7 +27,7 @@ print(f_table)
 class TestGedcomFile(unittest.TestCase):
 
     #US 01 - Dates (birth, marriage, divorce, death) should not be after the current date
-    def test_birth_marr(self):
+    def test_us_1(self):
         for family in table[1]:
             for indiv in table[0]:
                 if (indiv.id == family.husband or indiv.id == family.wife):
@@ -41,7 +41,7 @@ class TestGedcomFile(unittest.TestCase):
         print('Test 1 passed succesfully')
 
     #US 02 - Birth should occur before marriage of an individual
-    def test_us_02(self):
+    def test_us_2(self):
         for family in table[1]:
             for indiv in table[0]:
                 if(indiv.id == family.husband or indiv.id == family.wife):
@@ -54,7 +54,7 @@ class TestGedcomFile(unittest.TestCase):
         print('Test 2 passed succesfully')
         
     #User story 3 - Birth should occur before death of an individual
-    def test_us_03(self):
+    def test_us_3(self):
             for indiv in table[0]:
                 temp_death = indiv.death.split(" ")
                 temp_birth = indiv.birth.split(" ")
@@ -96,7 +96,7 @@ class TestGedcomFile(unittest.TestCase):
         print('Test 5 passed succesfully')
 
     #User story 6 - Divorce can only occur before death of both spouses
-    def test_us_5(self):
+    def test_us_6(self):
         for family in table[1]:
             for indiv in table[0]:
                 if (indiv.id == family.husband or indiv.id == family.wife):
@@ -111,7 +111,7 @@ class TestGedcomFile(unittest.TestCase):
 
 
     #User story 07 -Death should be less than 150 years after birth for dead people, and current date should be less than 150 years after birth for all living people
-    def test_us_07(self):
+    def test_us_7(self):
         for indiv in table[0]:
             temp_birth = indiv.birth.split(" ")
             temp_alive = indiv.alive
@@ -131,7 +131,42 @@ class TestGedcomFile(unittest.TestCase):
     #User story 8 - Children should be born after marriage of parents (and not more than 9 months after their divorce)
 
     #User story 9 - Child should be born before death of mother and before 9 months after death of father
-
+    def test_us_9(self):
+        for family in table[1]:
+            for indiv in table[0]:
+                if (family.children == indiv.id):
+                    temp_child_birth = indiv.birth.split(" ")
+                    for indiv in table[0]:
+                        if(indiv.id == family.wife or indiv.id == family.husband):
+                            if(indiv.id == family.wife):
+                                temp_wife = indiv.birth.split(" ")
+                                temp_alive = indiv.alive
+                                if(temp_alive == 'False'):
+                                    temp_death = indiv.death.split(" ")
+                                    checkBirthDate = datetime.datetime(int(temp_child_birth[2]), int(month_dict[temp_child_birth[1]]), int(temp_child_birth[0])) < datetime.datetime(int(temp_death[2]), int(month_dict[temp_death[1]]), int(temp_death[0]))
+                                    if(not checkBirthDate):
+                                        print("This is not allowed")
+                                else:
+                                    checkWife = datetime.datetime(int(temp_child_birth[2]), int(month_dict[temp_child_birth[1]]), int(temp_child_birth[0]))<datetime.datetime(int(temp_wife[2]), int(month_dict[temp_wife[1]]), int(temp_wife[0]))
+                                    if(not checkWife):
+                                        print("This is not allowed")
+                            else:
+                                temp_husband = indiv.birth.split(" ")
+                                temp_alive = indiv.alive
+                                if(temp_alive == 'False'):
+                                    temp_death = indiv.death.split(" ")
+                                    if (month_dict[temp_death[1]] + 9 > 12):
+                                        month_dict[temp_death[1]] = month_dict[temp_death[1]] + 9
+                                        month_dict[temp_death[1]] = month_dict[temp_death[1]] - 12
+                                        temp_death[2] = int(temp_death[2]) + 1
+                                    checkBirthDate = datetime.datetime(int(temp_child_birth[2]), int(month_dict[temp_child_birth[1]]), int(temp_child_birth[0])) < datetime.datetime(int(temp_death[2]), int(month_dict[temp_death[1]]), int(temp_death[0]))
+                                    if(not checkBirthDate):
+                                        print("This is not allowed")
+                                else:
+                                    checkWife = datetime.datetime(int(temp_child_birth[2]), int(month_dict[temp_child_birth[1]]), int(temp_child_birth[0]))<datetime.datetime(int(temp_husband[2]), int(month_dict[temp_husband[1]]), int(temp_husband[0]))
+                                    if(not checkWife):
+                                        print("This is not allowed")
+        print('Test 9 passed succesfully')
     #User story 10 - Marriage should be at least 14 years after birth of both spouses (parents must be at least 14 years old)
     def test_us_10(self):
         for family in table[1]:
@@ -149,22 +184,6 @@ class TestGedcomFile(unittest.TestCase):
     #User story 13 - Birth dates of siblings should be more than 8 months apart or less than 2 days apart (twins may be born one day apart, e.g. 11:59 PM and 12:02 AM the following calendar day)
 
     #User story 14 - No more than five siblings should be born at the same time
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 if __name__ == '__main__':
     unittest.main()
