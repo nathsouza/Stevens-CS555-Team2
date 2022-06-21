@@ -1,0 +1,68 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Try the new cross-platform PowerShell https://aka.ms/pscore6
+
+PS C:\Users\nsouz\OneDrive\Documents\STEVENS\CS 555 - Agile Methods\Stevens-CS555-Team2> & C:/Users/nsouz/AppData/Local/Programs/Python/Python310/python.exe "c:/Users/nsouz/OneDrive/Documents/STEVENS/CS 555 - Agile Methods/Stevens-CS555-Team2/gedcom_unittest.py"
++-------+--------------------+--------+-------------+-------+-------+--------+-------------+-------+--------------------+--------+-------------+-------+-------+--------+-------------+
+|   ID  |        Name        | Gender |   Birthday  | Alive | Child | Spouse |    Death    |   ID  |        Name        | Gender |   Birthday  | Alive | Child | Spouse | 
+   Death    |
++-------+--------------------+--------+-------------+-------+-------+--------+-------------+-------+--------------------+--------+-------------+-------+-------+--------+-------------+
+|  @I1@ |     Ali /Marx/     |   M    |  6 APR 1935 | False |  N/A  |  N/A   | 18 JAN 1975 |  @I1@ |     Ali /Marx/     |   M    |  6 APR 1935 | False |  N/A  |  N/A   | 
+18 JAN 1975 |
+|  @I2@ |    Hanna /Jean/    |   F    | 11 FEB 1915 | False |  N/A  |  N/A   |  7 JAN 1975 |  @I2@ |    Hanna /Jean/    |   F    | 11 FEB 1915 | False |  N/A  |  N/A   | 
+ 7 JAN 1975 |
+|  @I3@ |   Gabriel /Marx/   |   M    |  5 MAY 1945 | False |  N/A  |  N/A   |  7 JAN 1999 |  @I3@ |   Gabriel /Marx/   |   M    |  5 MAY 1945 | False |  N/A  |  N/A   | 
+ 7 JAN 1999 |
+|  @I4@ |   Carole /Wade/    |   F    |  2 APR 1910 | False |  N/A  |  N/A   |  8 SEP 1985 |  @I4@ |   Carole /Wade/    |   F    |  2 APR 1910 | False |  N/A  |  N/A   | 
+ 8 SEP 1985 |
+|  @I5@ |    Holly /Marx/    |   F    | 12 DEC 1940 | False |  N/A  |  N/A   |  5 SEP 2000 |  @I5@ |    Holly /Marx/    |   F    | 12 DEC 1940 | False |  N/A  |  N/A   | 
+ 5 SEP 2000 |
+|  @I6@ |   Irving /Marx/    |   M    |  9 JUL 1884 | False |  N/A  |  N/A   | 11 JUN 1941 |  @I6@ |   Irving /Marx/    |   M    |  9 JUL 1884 | False |  N/A  |  N/A   | 
+11 JUN 1941 |
+|  @I7@ |  Lauren /Jackson/  |   F    |  6 OCT 1885 | False |  N/A  |  N/A   | 13 APR 1940 |  @I7@ |  Lauren /Jackson/  |   F    |  6 OCT 1885 | False |  N/A  |  N/A   | 
+13 APR 1940 |
+|  @I8@ |    Karl /Jean/     |   M    |  9 SEP 1857 | False |  N/A  |  N/A   |  8 JUL 1923 |  @I8@ |    Karl /Jean/     |   M    |  9 SEP 1857 | False |  N/A  |  N/A   | 
+ 8 JUL 1923 |
+|  @I9@ |  Emily /Jennings/  |   F    |  4 MAR 1862 | False |  N/A  |  N/A   | 19 MAY 1925 |  @I9@ |  Emily /Jennings/  |   F    |  4 MAR 1862 | False |  N/A  |  N/A   | 
+19 MAY 1925 |
+| @I10@ |    Lucas /Wade/    |   M    |  4 AUG 1875 | False |  N/A  |  N/A   |  8 DEC 1940 | @I10@ |    Lucas /Wade/    |   M    |  4 AUG 1875 | False |  N/A  |  N/A   | 
+ 8 DEC 1940 |
+| @I11@ | Jacqueline /Beast/ |   F    |  8 MAY 1880 | False |  N/A  |  N/A   |  9 OCT 1940 | @I11@ | Jacqueline /Beast/ |   F    |  8 MAY 1880 | False |  N/A  |  N/A   | 
+ 9 OCT 1940 |
+| @I12@ |    John /Rock/     |   M    |  9 APR 1910 | False |  N/A  |  N/A   |  4 SEP 1985 | @I12@ |    John /Rock/     |   M    |  9 APR 1910 | False |  N/A  |  N/A   | 
+ 4 SEP 1985 |
+| @I13@ |   Forest /Rock/    |   M    |  4 JUN 1870 | False |  N/A  |  N/A   |  6 DEC 1940 | @I13@ |   Forest /Rock/    |   M    |  4 JUN 1870 | False |  N/A  |  N/A   | 
+ 6 DEC 1940 |
+| @I14@ |    Honey /Wick/    |   F    |  5 JAN 1870 | False |  N/A  |  N/A   |  7 JUL 1930 | @I14@ |    Honey /Wick/    |   F    |  5 JAN 1870 | False |  N/A  |  N/A   | 
+ 7 JUL 1930 |
++-------+--------------------+--------+-------------+-------+-------+--------+-------------+-------+--------------------+--------+-------------+-------+-------+--------+-------------+
++------+-------------+-------------+------------+---------+----------+------+-------------+-------------+------------+---------+----------+
+|  ID  |   Married   |   Divorced  | Husband ID | Wife ID | Children |  ID  |   Married   |   Divorced  | Husband ID | Wife ID | Children |
++------+-------------+-------------+------------+---------+----------+------+-------------+-------------+------------+---------+----------+
+| @F1@ |  6 MAY 1939 |  6 MAY 1939 |    @I1@    |   @I2@  |   @I3@   | @F1@ |  6 MAY 1939 |  6 MAY 1939 |    @I1@    |   @I2@  |   @I3@   |
+| @F2@ | 31 DEC 1940 | 31 DEC 1940 |    @I1@    |   @I4@  |   @I5@   | @F2@ | 31 DEC 1940 | 31 DEC 1940 |    @I1@    |   @I4@  |   @I5@   |
+| @F3@ | 10 AUG 1910 | 10 AUG 1910 |    @I6@    |   @I7@  |   @I1@   | @F3@ | 10 AUG 1910 | 10 AUG 1910 |    @I6@    |   @I7@  |   @I1@   |
+| @F4@ |  5 MAY 1914 |  5 MAY 1914 |    @I8@    |   @I9@  |   @I2@   | @F4@ |  5 MAY 1914 |  5 MAY 1914 |    @I8@    |   @I9@  |   @I2@   |
+| @F5@ |  9 SEP 1960 |  9 SEP 1960 |   @I12@    |   @I4@  |   N/A    | @F5@ |  9 SEP 1960 |  9 SEP 1960 |   @I12@    |   @I4@  |   N/A    |
+| @F6@ | 10 JUN 1900 | 10 JUN 1900 |   @I10@    |  @I11@  |   @I4@   | @F6@ | 10 JUN 1900 | 10 JUN 1900 |   @I10@    |  @I11@  |   @I4@   |
+| @F7@ |  7 DEC 1900 |  7 DEC 1900 |   @I13@    |  @I14@  |  @I12@   | @F7@ |  7 DEC 1900 |  7 DEC 1900 |   @I13@    |  @I14@  |  @I12@   |
++------+-------------+-------------+------------+---------+----------+------+-------------+-------------+------------+---------+----------+
+Test 1 passed succesfully
+.Ali /Marx/Marriage date is before 14
+.Test 13 passed succesfully
+.Test 14 passed succesfully
+.Test 2 passed succesfully
+.Test 3 passed succesfully
+.Test 4 passed succesfully
+.Test 5 passed succesfully
+.Test 6 passed succesfully
+.Test 7 passed succesfully
+.Children should be born after marriage of parents (and not more than 9 months after their divorce)
+.Test 9 passed succesfully
+.
+----------------------------------------------------------------------
+Ran 12 tests in 0.004s
+
+OK
+PS C:\Users\nsouz\OneDrive\Documents\STEVENS\CS 555 - Agile Methods\Stevens-CS555-Team2> 
