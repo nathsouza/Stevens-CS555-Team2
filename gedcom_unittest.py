@@ -21,8 +21,8 @@ month_dict = {"JAN": 1,
             "DEC": 12}
 
 
-print(p_table)
-print(f_table)
+# print(p_table)
+# print(f_table)
 
 class TestGedcomFile(unittest.TestCase):
 
@@ -212,6 +212,7 @@ class TestGedcomFile(unittest.TestCase):
                                     check_birth = abs((indiv_birth.year - child_birth.year)*12 + (indiv_birth.month - child_birth.month)) > 8 or abs( (indiv_birth - child_birth).days ) < 2
                                     if not check_birth:
                                         print("Children should be born more than 8 months apart or less than 2 days apart")
+                                        return
         print('Test 13 passed succesfully')
     #User story 14 - No more than five siblings should be born at the same time
     def test_us_14(self):
@@ -232,11 +233,34 @@ class TestGedcomFile(unittest.TestCase):
                                         count+=1
                                         if count>5:
                                             print("No more than five siblings should be born at the same time")
+                                            return
                     else:
                         break
         print('Test 14 passed succesfully')
 
+    #User story 15 - There should be fewer than 15 siblings in a family
+    def test_us_15(self):
+        for family in table[1]:
+            for indiv in table[0]:
+                if indiv.id in family.children:
+                    if len(family.children) >= 15:
+                        print("There should be fewer than 15 siblings in a family")
+                        return
+        print('Test 15 passed succesfully')
+
+    #User story 16 - All male members of a family should have the same last name
+    def test_us_16(self):
+        for family in table[1]:
+            checker = False
+            for indiv in table[0]:
+                if(family.husband == indiv.id):
+                    temp_family_name = indiv.name.split(" ")
+                    last_name = temp_family_name[1]
+                    checker = True
+                if (indiv.gender == "M" and indiv.name.split(" ")[1] != last_name and checker == True):
+                    print('All male members of a family should have the same last name')
+                    return    
+        print('Test 16 passed successfully')
 
 if __name__ == '__main__':
     unittest.main()
-
