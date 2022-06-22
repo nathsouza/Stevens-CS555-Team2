@@ -261,6 +261,6 @@ class TestGedcomFile(unittest.TestCase):
                     print('All male members of a family should have the same last name')
                     return    
         print('Test 16 passed successfully')
-        
+
 if __name__ == '__main__':
     unittest.main()
