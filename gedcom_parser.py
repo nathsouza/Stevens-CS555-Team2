@@ -9,6 +9,7 @@ class Individual:
 
 class Family:
     def __init__(self, id, married, husband, wife, children, divorced):
+        self.chil_list = []
         self.id = id
         self.married = married
         self.husband = husband
@@ -24,7 +25,7 @@ f_table = PrettyTable()
 
 def gedcom_table(file_name):
     file = open(file_name, 'r')
-    valid_tags = ["INDI", "NAME", "SEX", "BIRT", "DEAT", "FAMC", "FAMS", "FAM", "MARR", "HUSB", "WIFE", "CHIL", "DIV", "DATE", "HEAD", "TRLR", "NOTE"]
+    valid_tags = ["INDI", "NAME", "SEX", "BIRT", "DEAT", "FAMC", "FAMS", "FAM", "MARR", "HUSB", "WIFE", "CHIL", "DIV", "DATE", "HEAD", "TRLR", "NOTE", "N/A"]
     id_list = []
     name_list = []
     gender_list = []
