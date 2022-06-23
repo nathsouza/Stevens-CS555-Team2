@@ -262,5 +262,26 @@ class TestGedcomFile(unittest.TestCase):
                     return    
         print('Test 16 passed successfully')
 
+    #User story 23 - No more than one individual with the same name and birth date should appear in a GEDCOM file
+    def test_us_23(self):
+        unique = []
+        for indiv in table[0]:
+            if [indiv.name, indiv.birth] not in unique:
+                unique.append([indiv.name, indiv.birth])
+            else:
+                print("No more than one individual with the same name and birth date should appear in a GEDCOM file")
+                return
+        print('Test 23 passed successfully')
+
+    #User story 24 - No more than one family with the same spouses by name and the same marriage date should appear in a GEDCOM file
+    def test_us_24(self):
+        unique = []
+        for family in table[1]:
+            if [family.husband, family.wife, family.married] not in unique:
+                unique.append([family.husband, family.wife, family.married])
+            else:
+                print("No more than one family with the same spouses by name and the same marriage date should appear in a GEDCOM file")
+
+
 if __name__ == '__main__':
     unittest.main()
