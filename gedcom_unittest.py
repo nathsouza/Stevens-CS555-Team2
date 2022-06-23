@@ -1,9 +1,9 @@
 import unittest
 import gedcom_parser
-# from dateutil.parser import *
+# from dateutil.parser import parse
 import datetime
 from datetime import date
-from gedcom_parser import p_table, f_table
+from gedcom_parser import Individual, p_table, f_table, Family
 
 
 table = gedcom_parser.gedcom_table("gedcom_test.ged")
@@ -305,6 +305,34 @@ class TestGedcomFile(unittest.TestCase):
             else:
                 print('Test 30 had no living married people')
                 return
+
+
+    # #User story 31 - List all living people over 30 who have never been married in a GEDCOM file
+    def test_us_31(self):
+        for family in table[1]:
+            for indiv in table[0]:
+                if (family.husband == "N/A" and family.wife.age > 30 and family.wife.alive):
+                    print("into loop")
+                    info_str = f"Story US31: {indiv.name} ({indiv.id}) is over 30 years old at {indiv.age} and not married"
+                    print(info_str)
+                    return info_str
+                else:
+                    print('Test 31 passed successfully')
+                    return
+
+
+    # #User story 32 - List all multiple births in a GEDCOM file
+    def test_us_32(self):
+        for family in table[1]:
+            leng = len(family.chil_list)
+            if (leng > 1):
+                info_str = f"Story US32: Family {family.id} has multiple births ({leng}) on line "
+                print(info_str)
+                return info_str
+            else:
+                print('Test 32 passed successfully')
+                return
+
 
 if __name__ == '__main__':
     unittest.main()
