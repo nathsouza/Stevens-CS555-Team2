@@ -1,0 +1,38 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Try the new cross-platform PowerShell https://aka.ms/pscore6
+
+PS C:\Users\nsouz\OneDrive\Documents\STEVENS\CS 555 - Agile Methods\Stevens-CS555-Team2> & C:/Users/nsouz/AppData/Local/Programs/Python/Python310/python.exe "c:/Users/nsouz/OneDrive/Documents/STEVENS/CS 555 - Agile Methods/Stevens-CS555-Team2/gedcom_unittest.py"
+Test 1 passed succesfully
+.Ali /Marx/Marriage date is before 14
+.Test 13 passed succesfully
+.Test 14 passed succesfully
+.Test 15 passed succesfully
+.All male members of a family should have the same last name
+.Test 2 passed succesfully
+.Test 21 passed successfully
+.Test 23 passed successfully
+..['Ali /Marx/, Age: 39', 'Hanna /Jean/, Age: 59', 'Gabriel /Marx/, Age: 53', 'Carole /Wade/, Age: 75', 'Holly /Marx/, Age: 59', 'Irving /Marx/, Age: 56', 'Lauren /Jackson/, Age: 54', 'Karl /Jean/, Age: 65', 'Emily /Jennings/, Age: 63', 'Lucas /Wade/, Age: 65', 'Jacqueline /Beast/, Age: 60', 'John /Rock/, Age: 75', 'Forest /Rock/, Age: 70', 'Honey /Wick/, Age: 60']
+Test 27 passed successfully
+.Test 29: Ali /Marx/ (@I1@) is deceased
+.Test 3 passed succesfully
+.Test 30 had no living married people
+.Test 31 passed successfully
+.Test 32 passed successfully
+.Story US38: No living people whose birthdays occur in the next 30 days
+Test 38 passed succesfully
+.Story US39: No living couples whose marriage anniversaries occur in the next 30 days
+Test 39 passed succesfully
+.Test 4 passed succesfully
+.Test 5 passed succesfully
+.Test 6 passed succesfully
+.Test 7 passed succesfully
+.Children should be born after marriage of parents (and not more than 9 months after their divorce)
+.Test 9 passed succesfully
+.
+----------------------------------------------------------------------
+Ran 24 tests in 0.021s
+
+OK
+PS C:\Users\nsouz\OneDrive\Documents\STEVENS\CS 555 - Agile Methods\Stevens-CS555-Team2> 
