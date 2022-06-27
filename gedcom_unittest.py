@@ -337,7 +337,6 @@ class TestGedcomFile(unittest.TestCase):
                 print('Test 30 had no living married people')
                 return
 
-
     # #User story 31 - List all living people over 30 who have never been married in a GEDCOM file
     def test_us_31(self):
         for family in table[1]:
@@ -351,7 +350,6 @@ class TestGedcomFile(unittest.TestCase):
                     print('Test 31 passed successfully')
                     return
 
-
     # #User story 32 - List all multiple births in a GEDCOM file
     def test_us_32(self):
         for family in table[1]:
@@ -363,6 +361,49 @@ class TestGedcomFile(unittest.TestCase):
             else:
                 print('Test 32 passed successfully')
                 return
+
+    #User story 38 - List all living people in a GEDCOM file whose birthdays occur in the next 30 days
+    def test_us_38(self):
+        list_recent = []
+        for indiv in table[0]:
+            if (indiv.alive=='True'):
+                temp_birth = indiv.birth.split(" ")
+                indiv_birth = datetime.datetime(int(temp_birth[2]), month_dict[temp_birth[1]], int(temp_birth[0]))
+                recent_birth = datetime.datetime.now()
+                check_recent = (indiv_birth - recent_birth).days < 30
+                if (check_recent):
+                    list_recent.append(indiv.name)
+
+        if not list_recent:
+            print(f"Story US38: No living people whose birthdays occur in the next 30 days")
+        else:
+            for i in list_recent:
+                print(i)
+        print('Test 38 passed succesfully')
+
+    #User story 39 - List all living couples in a GEDCOM file whose marriage anniversaries occur in the next 30 days
+    def test_us_39(self):
+        list_recent = []
+        for family in table[1]:
+            for indiv in table[0]:
+                if (indiv.alive=='True'):
+                    temp_marr = family.marriage.split(" ")
+                    fam_marr = datetime.datetime(int(temp_marr[2]), month_dict[temp_marr[1]], int(temp_marr[0]))
+                    recent_marr = datetime.datetime.now()
+                    check_recent = (fam_marr - recent_marr).days < 30
+                    if (check_recent):
+                        for i in table[0]:
+                            if i.id==family.husband or i.id==family.wife:
+                                list_recent.append([family.husband, family.wife])
+                                break
+
+        if not list_recent:
+            print(f"Story US39: No living couples whose marriage anniversaries occur in the next 30 days")
+        else:
+            for i in list_recent:
+                print(i)
+        
+        print('Test 39 passed succesfully')
 
 
 if __name__ == '__main__':
